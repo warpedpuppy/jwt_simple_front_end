@@ -5,13 +5,15 @@ $(function(){
 		sessionStorage.clear();
 	})
 
+
 	$("#loginButton").click(function(){
 		if(!sessionStorage.getItem('token')){
 			register(obj);
 		} else {
 			console.log(sessionStorage.getItem('token'));
 		}
-	})
+	});
+
 
 	function register(obj){
 		$.ajax({

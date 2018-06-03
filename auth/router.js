@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 const config = require('../config');
 const router = express.Router();
+router.use(bodyParser.urlencoded({ extended: true }));
 
 const createAuthToken = function(user) {
   return jwt.sign({user}, config.JWT_SECRET, {
@@ -18,6 +19,7 @@ const createAuthToken = function(user) {
 const localAuth = passport.authenticate('local', {session: false});
 router.use(bodyParser.json());
 // The user provides a username and password to login
+
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
   res.json({authToken});
